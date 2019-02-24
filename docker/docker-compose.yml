@@ -17,10 +17,20 @@ services:
 #    environment:
 #      - SERVER_URL=http://teamcity:8111
 #      - AGENT_NAME=minimal_agent
-  bitbucket:
-    image: atlassian/bitbucket-server
+#  bitbucket:
+#    image: atlassian/bitbucket-server
+#    ports:
+#      - "7990:7990"
+#      - "7999:7999"
+#    volumes:
+#      - ./data/bitbucket:/var/atlassian/application-data/bitbucket
+  gitlab:
+    image: gitlab/gitlab-ce:latest
     ports:
-      - "7990:7990"
-      - "7999:7999"
+      - "443:443"
+      - "80:80"
+      - "22:22"
     volumes:
-      - ./data/bitbucket:/var/atlassian/application-data/bitbucket
+      - .data/gitlab/config:/etc/gitlab
+      - .data/gitlab/logs:/var/log/gitlab
+      - .data/gitlab/data:/var/opt/gitlab
