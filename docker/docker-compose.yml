@@ -1,5 +1,10 @@
 version: "3"
 services:
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - '1025:1025'
+      - '8025:8025'
   teamcity:
     image: jetbrains/teamcity-server
     ports:
