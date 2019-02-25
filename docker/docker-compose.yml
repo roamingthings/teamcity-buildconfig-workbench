@@ -31,6 +31,6 @@ services:
       - "80:80"
       - "22:22"
     volumes:
-      - .data/gitlab/config:/etc/gitlab
-      - .data/gitlab/logs:/var/log/gitlab
-      - .data/gitlab/data:/var/opt/gitlab
+      - ./data/gitlab/config:/etc/gitlab
+      - ./data/gitlab/logs:/var/log/gitlab
+      - ./data/gitlab/data:/var/opt/gitlab
