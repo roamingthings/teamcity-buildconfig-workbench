@@ -97,3 +97,40 @@ you may get an error claiming that no key can be found.
 Be sure to have the private key from the `docker/keys` folder available
 to your ssh client when operating with the repository from your machine.
 Alternatively you can add your default public key to the Gogs account.
+
+## FinishBuildTriggers
+
+* If this project is a subproject of ParentProject1Id add
+finishBuildTriggers that reference build steps from
+two other projects (AnotherProject1Id, AnotherProject2Id)
+* If this project is a subproject of ParentProject2Id add a
+finishBuildTrigger that reference build steps from
+one other project (AnotherProject3Id)
+* In any other case don't add any finishBuildTrigger at all
+
+```
+ /
+ +- AnotherProject1Id
+ |  |
+ |  \- AnotherProject1Id_triggerBuildType
+ |
+ +- AnotherProject2Id
+ |  |
+ |  \- AnotherProject2Id_triggerBuildType
+ |
+ +- AnotherProject3Id
+ |  |
+ |  \- AnotherProject3Id_triggerBuildType
+ |
+ +- ParentProject1Id
+ |  |
+ |  \- ParentProject1Id_ThisProjectId_Build (Trigger after AnotherProject1Id, AnotherProject2Id)
+ |
+ +- ParentProject2Id
+ |  |
+ |  \- ParentProject2Id_ThisProjectId_Build (Trigger after AnotherProject3Id)
+ |
+ +- ParentProject3Id
+    |
+    \- ParentProject3Id_ThisProjectId_Build (no finshBuildTrigger)
+```
